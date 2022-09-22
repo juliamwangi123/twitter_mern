@@ -1,6 +1,7 @@
 require ('dotenv').config()
 const express = require('express');
 const mongoose = require('mongoose')
+const authRouter= require('./router/auth')
 
 //inialize express
 const app =express();
@@ -19,3 +20,7 @@ mongoose.connect(process.env.DB_URI)
 }).catch(error=>{
     console.log(error)
 })
+
+
+//routes
+app.use('/api/user/', authRouter)
