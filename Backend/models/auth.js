@@ -45,7 +45,7 @@ userSchema.statics.signup =async function(username, email, password){
 
 
      //check if email and username is already reqgisered
-     const userExist = await this.findOne({email})
+     const userExist = await this.findOne({  "$or" :[{email}, {username}]})
 
 
      //throw an error if already registerd
