@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-const validator = require('validator')
+const validator = require('validator');
+const bcrypt = require('bcrypt')
 
 
 const userSchema = new mongoose.Schema({
@@ -41,6 +42,29 @@ userSchema.statics.signup =async function(username, email, password){
      if (!validator.isStrongPassword(password)){
         throw Error('Password should be stron')
      }
+
+
+     //check if email and username is already reqgisered
+     const userExist = await this.findOne({email})
+
+
+     //throw an error if already registerd
+     if(userExist){
+        throw Error('Username or email already registered')
+     }
+
+
+     //if not create the user 
+
+        //a. hash the password first
+        const salt = await bcrypt.genSalt(10)
+        const hash = await bcrypt.hash(password, salt)
+
+        //b. create the user 
+         const user = await this.create({username, email, password:hash});
+
+         return user
+
 }
 
 
