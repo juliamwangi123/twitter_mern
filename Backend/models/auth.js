@@ -67,7 +67,35 @@ userSchema.statics.signup =async function(username, email, password){
 
 }
 
+//login static user
 
+userSchema.statics.kogin = async function (username, password){
+    // check if both fields are filled 
+     if(!username || !password){
+        throw Error ('Field should not be empty')
+     }
+
+     //check if the user exsist
+     const user = await this.findOne({username})
+
+
+     //if user does not exist throw an error
+     if(!user){
+        throw Error('user not found')
+     }
+
+
+     //if the user exists match the passoword and the hasshed password
+     const  matchPassword = await bcrypt.compare(password, user.password)
+
+
+     if(!matchPassword){
+        throw Error ('wrong password')
+     }
+
+
+     return user
+}
 
 
 
