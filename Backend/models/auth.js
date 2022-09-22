@@ -69,7 +69,7 @@ userSchema.statics.signup =async function(username, email, password){
 
 //login static user
 
-userSchema.statics.kogin = async function (username, password){
+userSchema.statics.login = async function (username, password){
     // check if both fields are filled 
      if(!username || !password){
         throw Error ('Field should not be empty')

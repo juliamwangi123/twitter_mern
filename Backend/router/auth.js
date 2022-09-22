@@ -24,8 +24,16 @@ router.post('/signup', async(req,res)=>{
 
 
 //login user
-router.post('/login', (req,res)=>{
-    res.json('login userr')
+router.post('/login', async(req,res)=>{
+    const {username , password} =req.body
+
+    try{
+        const user = await User.login(username, password)
+        res.status(200).json(user)
+    }catch(error){
+        res.status(400).json({error: error.message})
+    }
+
 })
 
 module.exports =router
