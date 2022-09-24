@@ -1,77 +1,69 @@
-const Profile = require('../models/profileModel');
-const mongoose =require('mongoose')
+// const Profile = require('../models/profileModel');
+const mongoose =require('mongoose');
+const User = require('../models/authModel')
 
 
-//get all profiles
-const getProfile = async(req, res)=>{
 
-    try{
-        const profiles = await Profile.find({})
-        res.status(200).json(profiles)
-
-
-    }catch(error){
-        res.status(400).json({error: error.message})
-
-    }
-
-}
 
 
 //post to a profileJ
 const postProfile = async(req,res)=>{
-    const {
-        name,
-        profilePhoto,
-        coverPhoto,
-        bio,
-        from,
-        dob,
-        following,
-        followers
-
-    }=req.body
-
-    try{
-        const newProfile = await Profile.create( {
-                                            name,
-                                            profilePhoto,
-                                            coverPhoto,
-                                            bio,
-                                            from,
-                                            dob,
-                                            following,
-                                            followers
-                                    
-                                        })
-
-        res.status(200).json(newProfile)
-    }catch(error){
-        res.status(400).json({error: error.message})
-    } 
-}
-
-
-
-//get as single profile 
-const singleProfile =async (req, res)=>{
     const {id} =req.params
+        const {
+            profilePhoto,
+            coverPhoto,
+            profileName,
+            bio,
+            from,
+            dob,
+            following,
+            followers
+    
+        }=req.body
 
-    //use monngese to verify the id objects
-    if(!mongoose.isValidObjectId(id)){
-        res.status(400).json({error: 'Not Found'})
+    
+            try{
+
+            const profile = await User.findByIdAndUpdate({_id:id},{...req.body})
+
+            res.status(200).json(profile)
+
+            }catch(error){
+                res.status(401).json({error: error.message})
+            }
+   
+        }
+ 
+
+
+    //get a single profile
+    const getProfile=async (req, res)=>{
+        const {id} = req.params
+
+        //use mongoose to check the validity of the id object
+        if(!mongoose.isValidObjectId(id)){
+
+            return res.status(404).json({error : 'User not Found'})
+    
+        }
+
+        try{
+            const profile = await User.findById(id)
+
+            //if the user is not found throw an error
+            if(!profile){
+                res.status(404).json({error: "User not Found"})
+            }
+
+            //else reurn user profile
+            res.status(200).json(profile)
+            
+        }catch(error){
+            res.status(400).json({error: error.message})
+        }
     }
 
-
-    const profile = await Profile.findById(id)
-
-    //if not found throw an error
-    if(!profile){
-        res.status(400).json({error: 'Not Found'})
-    }
-
-    res.status(200).json(profile)
-}
+   
 
 
 
@@ -82,4 +74,10 @@ const singleProfile =async (req, res)=>{
 
 
 
-module.exports = {getProfile, postProfile}
+
+
+module.exports =    {
+                     postProfile,
+                     getProfile
+                    // updateProfile
+                }

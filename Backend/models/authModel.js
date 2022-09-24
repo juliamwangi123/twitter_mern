@@ -21,7 +21,40 @@ const userSchema = new mongoose.Schema({
         required:true,
         type:String,
 
-    }
+    },
+     profilePhoto :{
+         type:String,
+         default: ''
+     },
+     coverPhoto:{
+         type:String,
+         default: ''
+ 
+     },
+     profileName:{
+        type:String,
+
+
+     },
+     bio :{
+         type:String
+     },
+     from :{
+         type:String
+     },
+     dob:{
+         type:String
+     },
+     following:{
+         type:Array,
+         default:[]
+     },
+     followers:{
+         type:Array,
+         default:[]
+     }
+
+    
 })
 
 //static method signing the user

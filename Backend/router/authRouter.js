@@ -1,5 +1,5 @@
 const {Router, json} = require('express');
-const User = require('../models/auth')
+const User = require('../models/authModel')
 
 const router =Router()
 
