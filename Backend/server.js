@@ -3,7 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose')
 const authRouter= require('./router/authRouter')
 const profileRouter =require('./router/profilerRouter')
-
+const tweetRouter =require('./router/tweetRouter')
 //inialize express
 const app =express();
 
@@ -26,3 +26,4 @@ mongoose.connect(process.env.DB_URI)
 //routes
 app.use('/api/user/', authRouter)
 app.use('/api/profile', profileRouter)
+app.use('/api/tweets', tweetRouter)

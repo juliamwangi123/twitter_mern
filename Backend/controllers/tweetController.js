@@ -34,7 +34,20 @@ const singleTweet =async (req,res)=>{
     res.status(200).json(tweet)
     
 }
+//post tweet 
+const postTweet = async(req, res)=>{
+    const {body}= req.body
+    
+    try{
+        const newTweet = await Tweets.create({body})
+        res.status(200).json({newTweet, message:'tweet succesfully created'})
+    }
+    catch(error){
+        res.status(400).json({error: error.message})
+    }
 
+
+}
 //detele tweet
 const deteleTweet = async(req, res)=>{
     const {id} = req.params
@@ -54,4 +67,4 @@ const deteleTweet = async(req, res)=>{
 }
 
 
-module.exports= {singleTweet,getTweets,deteleTweet}
+module.exports= {singleTweet,getTweets,deteleTweet,postTweet}
