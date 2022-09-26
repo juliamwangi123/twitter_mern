@@ -1,4 +1,5 @@
 import { useState } from "react"
+import {error, loading, signup} from '../Hooks/SignupHook'
 
 const SignUp =()=>{
     const [username, setUsername] =useState('')

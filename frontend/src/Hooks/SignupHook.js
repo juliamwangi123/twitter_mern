@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-export  const SignUpHook = ()=>{
+export  const useSignUpHook = ()=>{
     const [error, setError] =useState(null)
     const [loading , setLoading] =useState(null)
 
