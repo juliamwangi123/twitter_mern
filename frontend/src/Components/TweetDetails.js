@@ -4,7 +4,7 @@ const TweetDetails = ({tweets})=>{
             {/* cyle throw tweets  */}
             {tweets.map((tweet)=>(
                 <div  className="tweet" key={tweet._id}>
-                    {tweet.body}
+                    <p> {tweet.body}</p>
                 </div>
             ))}
         </div>  

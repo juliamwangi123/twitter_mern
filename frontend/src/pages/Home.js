@@ -30,7 +30,7 @@ const Home =()=>{
 
         }
         fetchTweets()
-    })
+    },[])
     return(
         <div className='home'>
             {/* pass tweets to the tweet components */}
