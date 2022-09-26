@@ -1,9 +1,11 @@
  import { useState } from "react"
  import {useLoginHook} from '../Hooks/LoginHook'
+ import { useNavigate } from "react-router-dom"
 const Login =()=>{
     const [username, setUsername] =useState('')
     const [password, setPassword] = useState('')
     const {error, loading, login} = useLoginHook()
+    const navigate =useNavigate()
 
 
     //invoked on submit 
@@ -11,7 +13,8 @@ const Login =()=>{
         e.preventDefault()
         await login(username, password)
 
-        
+        //redirect to home once you've logged in
+        navigate('/')
     }
     return (
         // login form

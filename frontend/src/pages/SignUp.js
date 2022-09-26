@@ -1,17 +1,21 @@
 import { useState } from "react"
 import {useSignUpHook} from '../Hooks/SignupHook'
+import { useNavigate } from "react-router-dom"
 
 const SignUp =()=>{
     const [username, setUsername] =useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const {error, loading, signup} =useSignUpHook()
+    const navigate =useNavigate()
 
     //function invoked when sign up button is  clicked
     const handleSubmit = async(e)=>{
         e.preventDefault()
         await signup(username, email, password)
 
+        //navigate to home page once user sign up
+        navigate('/')
     }
 
     return(
