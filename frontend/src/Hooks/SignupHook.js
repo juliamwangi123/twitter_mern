@@ -13,11 +13,16 @@ export  const useSignUpHook = ()=>{
             body:JSON.stringify({username, email, password})
         })
 
+        //convert response to json 
+        const json = await response.json()
+
+        //if respons status is ok
         if(response.ok){
             setLoading(false)
             setError(null)
         }
 
+        //else if is not ok
         if(!response.ok){
             setLoading(false)
             setError(json.error)
