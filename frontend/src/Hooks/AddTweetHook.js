@@ -1,3 +1,5 @@
+import { useState } from "react"
+
 export const useAddTweet = ()=>{
     const [error, setError] =useState(null)
     const [loading , setLoading] =useState(null)
@@ -5,11 +7,13 @@ export const useAddTweet = ()=>{
     const addTweet =async(body)=>{
         const response = await fetch('/api/tweets',{
             method:'POST',
-            headers: {'Content-Type':'application/json'},
-            body:JSON.stringify(body)
+            headers: {'Content-Type':'application/json',
+                                    'Accept': 'application/json'},
+            body:JSON.stringify({body})
         })
 
         const json = await response.json()
+        console.log(json)
         //if respons status is ok
         if(response.ok){
             setLoading(false)
