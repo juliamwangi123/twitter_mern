@@ -1,6 +1,13 @@
-const TweetDetails = ()=>{
+const TweetDetails = ({tweets})=>{
     return(
-        <p>tweet detils</p>
+        <div className="tweetsDetails">
+            {/* cyle throw tweets  */}
+            {tweets.map((tweet)=>(
+                <div  className="tweet" key={tweet._id}>
+                    {tweet.body}
+                </div>
+            ))}
+        </div>  
     )
 }
 export default TweetDetails
