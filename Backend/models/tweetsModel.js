@@ -6,7 +6,8 @@ const mongoose = require('mongoose')
 const tweetSchema = new mongoose.Schema({
     body:{
         type:String,
-        max:300
+        max:300,
+        required:true
     }
 },{timestamps:true})
 

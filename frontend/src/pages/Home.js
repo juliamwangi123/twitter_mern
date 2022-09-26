@@ -3,6 +3,7 @@ import {useState, useEffect} from 'react'
 
 //components
 import TweetDetails from '../Components/TweetDetails'
+import AddTweet from '../Components/AddTweet'
 
 const Home =()=>{
     const [tweets, setTweets] =useState(null)
@@ -33,6 +34,8 @@ const Home =()=>{
     },[])
     return(
         <div className='home'>
+            {/* add tweet */}
+            <AddTweet/>
             {/* pass tweets to the tweet components */}
             {tweets && 
                 <div className='twees'>
