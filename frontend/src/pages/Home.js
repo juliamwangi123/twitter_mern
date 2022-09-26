@@ -1,5 +1,9 @@
 import {useState, useEffect} from 'react'
 
+
+//components
+import TweetDetails from '../Components/TweetDetails'
+
 const Home =()=>{
     const [tweets, setTweets] =useState(null)
     const [error, setError]   =useState(null)
@@ -8,7 +12,7 @@ const Home =()=>{
     //fetch tweets 
     useEffect(()=>{
         
-        const fetchTweets = ()=>{
+        const fetchTweets = async()=>{
             //use fetch api to get data
             const response = await fetch('/api/tweets')
             const json = await response.json()
@@ -28,7 +32,17 @@ const Home =()=>{
         fetchTweets()
     })
     return(
-        <p>Home</p>
+        <div className='home'>
+            {/* pass tweets to the tweet components */}
+            {tweets && 
+                <div className='twees'>
+                    <TweetDetails tweets={tweets}/>
+                </div>}
+
+                {/* show error if any */}
+            {error && <div className='error'>{error}</div>} 
+
+        </div>
     )
 }
 
