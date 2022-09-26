@@ -20,6 +20,8 @@ export  const useSignUpHook = ()=>{
         if(response.ok){
             setLoading(false)
             setError(null)
+            //save the jwt toke and username in local storage 
+            localStorage.setItem('user', JSON.stringify(json))
         }
 
         //else if is not ok
