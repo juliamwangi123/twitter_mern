@@ -24,10 +24,10 @@ router.post('/signup', async(req,res)=>{
         const token =generateToken(newUser._id)
 
         //return email and token
-        res.status(200).json({username, token})
+        res.status(200).json({ token,newUser})
     }catch(error){
         res.status(400).json({error : error.message})
-    }    
+    }  
 })
 
 
@@ -40,7 +40,7 @@ router.post('/login', async(req,res)=>{
 
         //generate jwt token upon login 
         const token = generateToken(user._id)
-        res.status(200).json({username, token})
+        res.status(200).json({ token,user})
     }catch(error){
         res.status(400).json({error: error.message})
     }

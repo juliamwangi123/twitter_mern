@@ -1,9 +1,10 @@
 import { useState } from "react"
-const { dispatch } = useAuthContext()
+import {useAuthContext} from './useAuthContext'
 
 export const useLoginHook = ()=>{
     const [error, setError] =useState(null)
     const [loading , setLoading] =useState(null)
+    const { dispatch } = useAuthContext()
 
 
     //login user using fetch api

@@ -1,9 +1,11 @@
 import { useState } from "react"
-const { dispatch } = useAuthContext()
+import {useAuthContext} from './useAuthContext'
 
 export  const useSignUpHook = ()=>{
     const [error, setError] =useState(null)
     const [loading , setLoading] =useState(null)
+    const { dispatch } = useAuthContext()
+
 
 
     //signup the user
