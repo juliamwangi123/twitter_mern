@@ -1,7 +1,10 @@
 import { useState } from "react"
+const { dispatch } = useAuthContext()
+
 export const useLoginHook = ()=>{
     const [error, setError] =useState(null)
     const [loading , setLoading] =useState(null)
+
 
     //login user using fetch api
     const login = async(username, password)=>{
@@ -18,6 +21,10 @@ export const useLoginHook = ()=>{
          if(response.ok){
             setLoading(false)
             setError(null)
+
+            //change usercontecxt state to login
+            dispatch({type: 'LOGIN', payload: json})
+
             //save the jwt toke and username in local storage 
             localStorage.setItem('user', JSON.stringify(json))
         }
