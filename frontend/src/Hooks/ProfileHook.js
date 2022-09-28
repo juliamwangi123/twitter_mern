@@ -6,8 +6,7 @@ export const useProfile =()=>{
     bio,
     from,
     dob,
-    following,
-    followers)=>{
+    )=>{
 
         const response = await fetch('/api/profile',{
             method:"POST",
@@ -17,16 +16,15 @@ export const useProfile =()=>{
                 bio,
                 from,
                 dob,
-                following,
-                followers})
+            })
         })
         
         const json = await response.json
 
-        if(response.ok){
-
-        }
+        
 
 
 }
+
+return {profile}
 }

@@ -4,7 +4,6 @@ import {useState, useEffect} from 'react'
 //components
 import TweetDetails from '../Components/TweetDetails'
 import AddTweet from '../Components/AddTweet'
-import Profile from '../Components/Profile'
 
 const Home =()=>{
     const [tweets, setTweets] =useState(null)
@@ -45,7 +44,6 @@ const Home =()=>{
 
                 {/* show error if any */}
 
-                <Profile/>
             {error && <div className='error'>{error}</div>} 
 
         </div>
