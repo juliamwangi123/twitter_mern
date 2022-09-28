@@ -4,6 +4,7 @@ import {useState, useEffect} from 'react'
 //components
 import TweetDetails from '../Components/TweetDetails'
 import AddTweet from '../Components/AddTweet'
+import SideMenu from '../Components/SideMenu'
 
 const Home =()=>{
     const [tweets, setTweets] =useState(null)
@@ -33,7 +34,13 @@ const Home =()=>{
         fetchTweets()
     },[])
     return(
-        <div className='home'>
+        <div className='body'>
+            
+            <SideMenu/>
+            <div className='feed'>
+            <div class="feed__header">
+            <h2>Home</h2>
+            </div>
             {/* add tweet */}
             <AddTweet/>
             {/* pass tweets to the tweet components */}
@@ -41,11 +48,10 @@ const Home =()=>{
                 <div className='twees'>
                     <TweetDetails tweets={tweets}/>
                 </div>}
-
+            </div>
                 {/* show error if any */}
-
             {error && <div className='error'>{error}</div>} 
-
+            
         </div>
     )
 }

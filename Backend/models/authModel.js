@@ -52,7 +52,8 @@ const userSchema = new mongoose.Schema({
      followers:{
          type:Array,
          default:[]
-     }
+     },
+     posts:[{ type: mongoose.Schema.Types.ObjectId, ref: 'tweets' }],
     
 })
 
